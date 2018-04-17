@@ -179,7 +179,11 @@ function runBuild() {
 
   shell.echo(`Start styles`);
   shell.exec(`gulp styles`);
-  shell.exec(`node-sass dist/ontimize.scss dist/ontimize.scss --output-style compressed`);
+  var stylesFile = 'styles';
+  if (PACKAGE === 'ontimize-web-ngx') {
+    stylesFile = 'ontimize';
+  }
+  shell.exec(`node-sass dist/${stylesFile}.scss dist/${stylesFile}.scss --output-style compressed`);
   shell.echo(chalk.green(`Styles completed`));
 
   // // shell.sed('-i', `"private": true,`, `"private": false,`, `./${NPM_DIR}/package.json`);
