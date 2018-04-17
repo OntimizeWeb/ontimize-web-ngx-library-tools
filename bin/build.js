@@ -24,42 +24,6 @@ const KEYS_REPLACE_MAP = {
   'LIBRARY': 'package'
 };
 
-// function copyLibraryAssets() {
-//   const args = yargs.argv;
-//   if (!shell.test('-f', 'tsconfig.aot.json')) {
-//     copied
-//     shell.echo(`Copying tsconfig.aot.json from ontimize-web-ngx-library-tools`);
-//     shell.cp(`${LIBRARY_ASSETS_PATH}/tsconfig.aot.json`, '.');
-//   }
-
-//   if (!shell.test('-f', 'tsconfig.build.json')) {
-//     shell.echo(`Copying tsconfig.build.json from ontimize-web-ngx-library-tools`);
-//     shell.cp(`${LIBRARY_ASSETS_PATH}/tsconfig.build.json`, '.');
-//     shell.ls('tsconfig.build.json').forEach(function (file) {
-//       shell.sed('-i', 'LIBRARY', args.package, file);
-//     });
-//   }
-
-//   if (!shell.test('-f', 'rollup.es.config.js')) {
-//     shell.echo(`Copying rollup.es.config.js from ontimize-web-ngx-library-tools`);
-//     shell.cp(`${LIBRARY_ASSETS_PATH}/rollup.es.config.js`, '.');
-//   }
-
-//   if (!shell.test('-f', 'rollup.config.js')) {
-//     shell.echo(`Copying rollup.config.js from ontimize-web-ngx-library-tools`);
-//     shell.cp(`${LIBRARY_ASSETS_PATH}/rollup.config.js`, '.');
-//     shell.ls('tsconfig.build.json').forEach(function (file) {
-//       shell.sed('-i', 'NG_LIBRARY', NG_LIBRARY, file);
-//       shell.sed('-i', 'LIBRARY', args.package, file);
-//     });
-//   }
-
-//   if (!shell.test('-f', 'public_api.ts')) {
-//     shell.echo(`Copying public_api.ts from ontimize-web-ngx-library-tools`);
-//     shell.cp(`${LIBRARY_ASSETS_PATH}/public_api.ts`, '.');
-//   }
-// }
-
 function copyLibraryAssets() {
   const args = yargs.argv;
   var copied = [];
@@ -162,7 +126,9 @@ function runBuild() {
   shell.echo(chalk.green(`Bundling completed`));
 
   copied.forEach(function (copiedAsset) {
-    shell.rm(`-Rf`, copiedAsset);
+    if (shell.test('-f', copiedAsset)) {
+      shell.rm(`-Rf`, copiedAsset);
+    }
   });
 
   shell.rm(`-Rf`, `${NPM_DIR}/package`);
