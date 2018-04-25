@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "An implementation of tools for Ontimize Web libraries packaging",
   "bin": {
-    "ontimize-web-ngx-library": "bin/ontimize-web-ngx-library.js"
+    "o-ngx-lib-builder": "bin/ontimize-web-ngx-library.js"
   },
   "keywords": [
     "ontimize-web-ngx",
-    "ontimize-web-ngx-library-tools"
+    "ontimize-web-ngx-library-tools",
+    "o-ngx-lib-builder"
   ],
   "author": "IMATIA S.L.",
   "repository": {
