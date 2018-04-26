@@ -49,6 +49,14 @@ function copyLibraryAssets() {
   return copied;
 }
 
+function cleanLibraryAssets() {
+  LIBRARY_ASSETS.forEach(function (asset) {
+    if (shell.test('-f', asset)) {
+      shell.rm(`-Rf`, asset);
+    }
+  });
+}
+
 function runBuild() {
   var args = yargs.argv;
   const PACKAGE = args.package;
@@ -158,5 +166,6 @@ function runBuild() {
 
 module.exports = {
   runBuild: runBuild,
-  copyLibraryAssets: copyLibraryAssets
+  copyLibraryAssets: copyLibraryAssets,
+  cleanLibraryAssets: cleanLibraryAssets
 };

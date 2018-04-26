@@ -2,7 +2,7 @@
 'use strict';
 const shell = require("shelljs");
 const yargs = require("yargs");
-const { runBuild } = require('./build');
+const { runBuild, cleanLibraryAssets } = require('./build');
 
 if (!shell.which('git')) {
   shell.echo('Sorry, this script requires git');
@@ -12,6 +12,10 @@ if (!shell.which('git')) {
 yargs.command("build", "building dist folder", function (yargs) {
   // var args = yargs.argv;
   runBuild();
+});
+
+yargs.command("clean", "clean library assets", function (yargs) {
+  cleanLibraryAssets();
 });
 
 var argv = yargs.usage("$0 command")
