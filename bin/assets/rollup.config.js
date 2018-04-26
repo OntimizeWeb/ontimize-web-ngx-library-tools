@@ -1,7 +1,6 @@
 import resolve from 'rollup-plugin-node-resolve';
 import sourcemaps from 'rollup-plugin-sourcemaps';
-
-// import commonjs from 'rollup-plugin-commonjs';
+import commonjs from 'rollup-plugin-commonjs';
 
 /**
  * Add here external dependencies that actually you use.
@@ -239,11 +238,16 @@ export default {
   external: Object.keys(globals),
   plugins: [
     resolve(),
-    sourcemaps()
-    // ,
-    // commonjs({
-    //   include: 'node_modules/**'
-    // })
+    sourcemaps(),
+    commonjs({
+      namedExports: {
+        // left-hand side can be an absolute path, a path
+        // relative to the current directory, or the name
+        // of a module in node_modules
+        'node_modules/moment/moment.js': [ 'moment' ]
+      },
+      include: 'node_modules/**'
+    })
   ],
   onwarn: () => { return },
   output: {
