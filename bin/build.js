@@ -24,7 +24,7 @@ const KEYS_REPLACE_MAP = {
   'LIBRARY': 'package'
 };
 
-function copyLibraryAssets() {
+function copyLibraryAssets(baseFolder) {
   const args = yargs.argv;
   var copied = [];
   for (var i = 0, len = LIBRARY_ASSETS.length; i < len; i++) {
@@ -42,6 +42,10 @@ function copyLibraryAssets() {
               shell.sed('-i', regexp, args[KEYS_REPLACE_MAP[replaceKey]], file);
             }
           });
+          if (asset === 'tsconfig.build.json') {
+            var regexp = new RegExp(`SOURCE_PATH`, 'g');
+            shell.sed('-i', regexp, `${baseFolder}/src`, file);
+          }
         });
       }
     }
@@ -78,7 +82,7 @@ function runBuild() {
   shell.mkdir(`-p`, `./${ESM5_DIR}`);
   shell.mkdir(`-p`, `./${BUNDLES_DIR}`);
 
-  var copied = copyLibraryAssets();
+  var copied = copyLibraryAssets(baseFolder);
 
   /* TSLint with Codelyzer */
   // https://github.com/palantir/tslint/blob/master/src/configs/recommended.ts
@@ -166,6 +170,5 @@ function runBuild() {
 
 module.exports = {
   runBuild: runBuild,
-  copyLibraryAssets: copyLibraryAssets,
   cleanLibraryAssets: cleanLibraryAssets
 };
