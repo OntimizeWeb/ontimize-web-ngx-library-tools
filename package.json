@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-library-tools",
-  "version": "2.0.0",
+  "version": "4.0.0-rc.0",
   "description": "An implementation of tools for Ontimize Web libraries packaging",
   "bin": {
     "o-ngx-lib-builder": "bin/ontimize-web-ngx-library.js"
@@ -21,7 +21,7 @@
     "@types/uglify-js": "2.6.30",
     "chalk": "2.3.0",
     "codelyzer": "4.4.4",
-    "node-sass": "4.7.2",
+    "node-sass": "4.9.4",
     "rollup": "0.56.0",
     "rollup-plugin-commonjs": "9.1.0",
     "rollup-plugin-license": "0.6.0",
