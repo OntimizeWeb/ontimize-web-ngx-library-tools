@@ -44,7 +44,7 @@ function copyLibraryAssets(baseFolder) {
           });
           if (asset === 'tsconfig.build.json') {
             var regexp = new RegExp(`SOURCE_PATH`, 'g');
-            shell.sed('-i', regexp, `${baseFolder}/src`, file);
+            shell.sed('-i', regexp, `${baseFolder}`, file);
           }
         });
       }
@@ -65,8 +65,12 @@ function runBuild() {
   var args = yargs.argv;
   const PACKAGE = args.package;
   var baseFolder = BASE_DIR;
+  var baseFolderTsConfig ;
   if (PACKAGE === 'ontimize-web-ngx') {
     baseFolder = 'ontimize';
+    baseFolderTsConfig = baseFolder;
+  } else {
+    baseFolderTsConfig = baseFolder + '/src';
   }
   const OUT_DIR_AOT = `${NPM_DIR}/src`;
 
@@ -82,7 +86,7 @@ function runBuild() {
   shell.mkdir(`-p`, `./${ESM5_DIR}`);
   shell.mkdir(`-p`, `./${BUNDLES_DIR}`);
 
-  var copied = copyLibraryAssets(baseFolder);
+  var copied = copyLibraryAssets(baseFolderTsConfig);
 
   /* TSLint with Codelyzer */
   // https://github.com/palantir/tslint/blob/master/src/configs/recommended.ts
@@ -115,6 +119,7 @@ function runBuild() {
 
   shell.echo(`Produce ESM5 version`);
   shell.exec(`ngc -p tsconfig.build.json --target es5 -d false --outDir ${OUT_DIR_ESM5} --importHelpers true --sourceMap`);
+  shell.echo(`y ahora Produce ESM5 version`);
   if (shell.exec(`rollup -c rollup.es.config.js -i ${OUT_DIR_ESM5}/${PACKAGE}.js -o ${ESM5_DIR}/${PACKAGE}.es5.js`).code !== 0) {
     shell.echo(chalk.red(`Error: ESM5 version failed`));
     shell.exit(1);
