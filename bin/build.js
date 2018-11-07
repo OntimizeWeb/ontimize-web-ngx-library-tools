@@ -44,7 +44,7 @@ function copyLibraryAssets(baseFolder) {
           });
           if (asset === 'tsconfig.build.json') {
             var regexp = new RegExp(`SOURCE_PATH`, 'g');
-            shell.sed('-i', regexp, `${baseFolder}/src`, file);
+            shell.sed('-i', regexp, `${baseFolder}`, file);
           }
         });
       }
@@ -65,10 +65,12 @@ function runBuild() {
   var args = yargs.argv;
   const PACKAGE = args.package;
   var baseFolder = BASE_DIR;
+  var baseFolderTsConfig;
   if (PACKAGE === 'ontimize-web-ngx') {
     baseFolder = 'ontimize';
+  } else {
+    baseFolderTsConfig = baseFolder + '/src';
   }
-  const OUT_DIR_AOT = `${NPM_DIR}/src`;
 
   shell.echo(`Start building:`, PACKAGE);
 
@@ -82,7 +84,7 @@ function runBuild() {
   shell.mkdir(`-p`, `./${ESM5_DIR}`);
   shell.mkdir(`-p`, `./${BUNDLES_DIR}`);
 
-  var copied = copyLibraryAssets(baseFolder);
+  var copied = copyLibraryAssets(baseFolderTsConfig);
 
   /* TSLint with Codelyzer */
   // https://github.com/palantir/tslint/blob/master/src/configs/recommended.ts
