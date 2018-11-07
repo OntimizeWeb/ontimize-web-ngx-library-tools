@@ -119,7 +119,6 @@ function runBuild() {
 
   shell.echo(`Produce ESM5 version`);
   shell.exec(`ngc -p tsconfig.build.json --target es5 -d false --outDir ${OUT_DIR_ESM5} --importHelpers true --sourceMap`);
-  shell.echo(`y ahora Produce ESM5 version`);
   if (shell.exec(`rollup -c rollup.es.config.js -i ${OUT_DIR_ESM5}/${PACKAGE}.js -o ${ESM5_DIR}/${PACKAGE}.es5.js`).code !== 0) {
     shell.echo(chalk.red(`Error: ESM5 version failed`));
     shell.exit(1);
