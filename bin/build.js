@@ -68,6 +68,7 @@ function runBuild() {
   var baseFolderTsConfig;
   if (PACKAGE === 'ontimize-web-ngx') {
     baseFolder = 'ontimize';
+    baseFolderTsConfig = 'ontimize';
   } else {
     baseFolderTsConfig = baseFolder + '/src';
   }
