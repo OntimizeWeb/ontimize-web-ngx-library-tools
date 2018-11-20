@@ -1,6 +1,6 @@
 #1.1.0 (2018-11-20)
 ### Bug fixing
-Fixing bug of previous versoin
+Fixing bug of previous version.
 
 ### Features
 
