@@ -26,7 +26,7 @@
     "allowSyntheticDefaultImports": true
   },
   "files": [
-    "ontimize/custom-typings.d.ts",
+    "SOURCE_PATH/custom-typings.d.ts",
     "public_api.ts"
   ],
   "angularCompilerOptions": {
