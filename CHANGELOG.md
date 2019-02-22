@@ -1,3 +1,10 @@
+
+#4.0.0 (2019-02-22)
+Updating code for ontimize-web-ngx@4.0.0.
+
+#4.0.0-rc.0 (2018-11-16)
+Updating code for Ontimize Web@4.x.x versions.
+
 #1.1.0 (2018-10-05)
 
 ### Features
