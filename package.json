@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-library-tools",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "An implementation of tools for Ontimize Web libraries packaging",
   "bin": {
     "o-ngx-lib-builder": "bin/ontimize-web-ngx-library.js"
