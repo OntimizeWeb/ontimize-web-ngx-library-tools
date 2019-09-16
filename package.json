@@ -40,7 +40,6 @@
     "@angular/platform-browser": "6.1.6",
     "@angular/platform-browser-dynamic": "6.1.6",
     "rxjs": "6.3.1",
-    "zone.js": "0.8.26",
-    "lodash.mergewith": "4.6.2"
+    "zone.js": "0.8.26"
   }
 }
