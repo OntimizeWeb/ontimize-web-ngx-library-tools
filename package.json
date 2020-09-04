@@ -21,7 +21,7 @@
     "@types/uglify-js": "2.6.30",
     "chalk": "2.3.0",
     "codelyzer": "4.4.4",
-    "node-sass": "4.9.4",
+    "node-sass": "4.13.1",
     "rollup": "0.56.0",
     "rollup-plugin-commonjs": "9.1.0",
     "rollup-plugin-license": "0.10.0",
